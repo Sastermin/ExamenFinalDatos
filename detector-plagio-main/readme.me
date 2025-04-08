@@ -1,0 +1,30 @@
+# Descripción del proyecto
+Este proyecto implementa un sistema de detección de plagio que identifica similitudes entre documentos de texto plano. Utiliza técnicas de procesamiento de texto, estructuras de datos como tablas hash y filtros de Bloom, y algoritmos de ordenamiento para clasificar los documentos según su nivel de similitud.
+
+## Estructura del Proyecto
+documentos/: Almacena archivos de texto con los trabajos realizados.
+src/: Carpeta principal con el código fuente dividido en módulos.
+tests/: Incluye los archivos con pruebas para verificar el funcionamiento del sistema.
+resultados/: Guarda la salida generada por el sistema tras el procesamiento.
+
+## Instrucciones de instalación y ejecución
+1. Instalar las dependencias en requirements con "pip install"
+2. Checar que todo este en orden, más en especifico graficos.py
+3. Dirigete a main.py y ejecuta el programa
+- Para hacer los testes pon los siguientes comandos en su respectivo apartado
+python -m pytest test/test_bloom_filter.py
+python -m pytest test/test_hash_table.py
+python -m pytest test/test_sorting.py
+python -m pytest test/test_similitud.py
+python -m pytest test/test_preprocesamiento.py
+
+## Instrucciones para replicar resultados
+-Asegúrate de seguir las instrucciones de instalación.
+-Usa la misma colección de archivos de texto para obtener los mismos resultados.
+-Revisa la sección de configuración en main.py para definir parámetros como el tipo de n-grama.
+-Ejecuta el script principal y revisa los resultados generados en consola o en los archivos de salida.
+
+## Visualizión de resultados
+Puedes ver los resultados en su respectiva carptea
+
+#Historial de commits
