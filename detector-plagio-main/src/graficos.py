@@ -13,6 +13,7 @@ def generar_graficos(similitudes):
     # Extrae los valores de similitud y los convierte a porcentaje (de 0 a 100)
     scores = [sim * 100 for _, _, sim in similitudes_ordenadas]
 
+
     # Genera una paleta de colores (gradiente) según la cantidad de pares
     cmap = plt.get_cmap('viridis')
     colores = [cmap(i / len(documentos)) for i in range(len(documentos))]
@@ -32,6 +33,7 @@ def generar_graficos(similitudes):
     # Establece el límite del eje Y de 0 a 100
     plt.ylim(0, 100)
 
+
     # Agrega el valor numérico encima de cada barra
     for barra, score in zip(barras, scores):
         plt.text(
@@ -41,8 +43,10 @@ def generar_graficos(similitudes):
             ha='center', va='bottom'                # alineación horizontal y vertical
         )
 
+
     # Rota las etiquetas del eje X para evitar que se encimen
     plt.xticks(rotation=45, ha='right')
+
 
     # Crea la carpeta donde se guardarán los gráficos, si no existe
     os.makedirs('resultados/graficos', exist_ok=True)
@@ -51,7 +55,9 @@ def generar_graficos(similitudes):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f'resultados/graficos/similitudes_{timestamp}.png'
 
+
     # Ajusta automáticamente los márgenes, guarda la imagen y la muestra en pantalla
     plt.tight_layout()
     plt.savefig(filename)
     plt.show()
+

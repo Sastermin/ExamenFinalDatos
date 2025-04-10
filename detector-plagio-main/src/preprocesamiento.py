@@ -15,6 +15,7 @@ def cargar_documentos(carpeta):
 
     return documentos  # Devuelve el diccionario con todos los textos
 
+
 def tokenizar(texto, n=2):
     # Limpia el texto: pasa a minúsculas y elimina puntuación
     texto = re.sub(r'[^\w\s]', '', texto.lower())

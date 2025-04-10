@@ -7,35 +7,30 @@ from src.sorting import merge_sort
 from src.graficos import generar_graficos
 
 def main():
-    # Obtener ruta absoluta al directorio donde se encuentra este script
+    # Obtener ruta absoluta al directorio donde está este script
     ruta_actual = os.path.dirname(os.path.abspath(__file__))
-
-    # Construir la ruta de la carpeta que contiene los documentos
     ruta_documentos = os.path.join(ruta_actual, 'documentos')
 
-    # Paso 1: Cargar los Documentos desde la carpeta "documentos/"
+    # Paso 1: Cargar los Documentos
     documentos = cargar_documentos(ruta_documentos)
     
     # Paso 2: Preprocesamiento del Texto
-    # Para cada documento, aplicar limpieza y tokenización en n-gramas (bi-gramas por defecto)
     n_gramas = {doc: tokenizar(texto) for doc, texto in documentos.items()}
     
-    # Paso 3: Crear una Tabla Hash y un Filtro de Bloom para cada documento
+    # Paso 3: Crear una Tabla Hash y Filtro de Bloom
     hash_tables = {doc: HashTable() for doc in n_gramas}
     bloom_filters = {doc: BloomFilter() for doc in n_gramas}
     
-    # Insertar cada n-grama en su respectiva tabla hash y filtro de Bloom
     for doc, n_gram in n_gramas.items():
         for n in n_gram:
             hash_tables[doc].insert(n)
             bloom_filters[doc].add(n)
     
-    # Paso 4: Comparar Documentos y Calcular Similitud de Jaccard
-    similitudes = []                  # Lista para almacenar tuplas (doc1, doc2, similitud)
-    compared_pairs = set()           # Conjunto para evitar comparar pares repetidos
+    # Paso 4: Comparar Documentos y Calcular Similitud
+    similitudes = []
+    compared_pairs = set()
     documentos_list = list(n_gramas.keys())
 
-    # Comparar cada par único de documentos
     for i in range(len(documentos_list)):
         for j in range(i + 1, len(documentos_list)):
             doc1 = documentos_list[i]
@@ -44,17 +39,16 @@ def main():
             if sim is not None:
                 similitudes.append((doc1, doc2, sim))
 
-    # Paso 5: Ordenar los Resultados de Similitud de mayor a menor usando Merge Sort
+    # Paso 5: Ordenar los Resultados
     similitudes_ordenadas = merge_sort(similitudes, key=lambda x: x[2], reverse=True)
     
-    # Paso 6: Mostrar los N pares de documentos más similares (ej. top 5)
+    # Paso 6: Mostrar los N Documentos Más Similares
     N = 5
     for doc1, doc2, sim in similitudes_ordenadas[:N]:
         print(f"Similitud entre {doc1} y {doc2}: {sim:.2f}")
     
-    # Paso 7: Visualización gráfica de los resultados
+    # Generar gráficos
     generar_graficos(similitudes_ordenadas)
 
-# Punto de entrada del programa
-if __name__ == "_main_":
+if __name__ == "__main__":
     main()

@@ -23,3 +23,4 @@ def exportar_similitudes_a_csv(similitudes, carpeta='resultados/csv'):
 
     # Mensaje en consola indicando que la exportación fue exitosa
     print(f"[✔] Similitudes exportadas a: {nombre_archivo}")
+

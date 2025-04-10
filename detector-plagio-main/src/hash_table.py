@@ -3,6 +3,7 @@ class HashTable:
         # Inicializa una tabla hash vacía usando un diccionario
         self.table = {}
 
+
     def insert(self, n_gram):
         # Si el n-grama ya existe en la tabla, incrementa su contador
         if n_gram in self.table:

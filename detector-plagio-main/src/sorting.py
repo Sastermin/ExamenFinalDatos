@@ -38,3 +38,4 @@ def merge_sort(arr, key=lambda x: x, reverse=False):
 
     # Devuelve la lista ordenada (útil si se llama directamente)
     return arr
+

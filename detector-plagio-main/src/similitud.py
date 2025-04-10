@@ -25,3 +25,7 @@ def calcular_similitud(hash_table_a, hash_table_b, compared_pairs):
 
     # Calcula y retorna la similitud de Jaccard
     return intersection / union if union > 0 else 0
+
+
+
+
